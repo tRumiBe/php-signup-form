@@ -1,7 +1,6 @@
 <?php 
 
 // Output user inputs. Just to make sure if the form works. 
-// print_r($_POST);
 
 // Validate name field isn't empty.
 if (empty($_POST["username"])) {
@@ -42,7 +41,7 @@ $password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
 $mysqli = require __DIR__ . "/database.php";
 
 // Output user input. Just making sure it's working. 
-//print_r($_POST);
+print_r($_POST);
 
 
 // Add a new user into the database. (?, ?, ?) is a placeholder. 
@@ -69,8 +68,8 @@ $stmt->bind_param("sss", $_POST["username"], $_POST["email"], $password_hash);
 // Output an error if the email is already registered. 
 try {
    if ($stmt->execute()) {
-        //header("Location: ../signup-success.php");
-        header('Location: ../login.php');
+        header("Location: ../success.php");
+        //header('Location: ../login.php');
         exit();
    }
 } catch (mysqli_sql_exception $e) {
